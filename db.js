@@ -2,6 +2,7 @@
 /** Database setup for jobly. */
 const { Client } = require("pg");
 const { getDatabaseUri } = require("./config");
+const secret = require('./secret')
 
 let db;
 
@@ -10,11 +11,12 @@ if (process.env.NODE_ENV === "production") {
     connectionString: getDatabaseUri(),
     ssl: {
       rejectUnauthorized: false
-    }
+    },
   });
 } else {
   db = new Client({
-    connectionString: getDatabaseUri()
+    connectionString: getDatabaseUri(),
+    ssl: false
   });
 }
 
