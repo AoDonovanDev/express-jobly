@@ -3,6 +3,7 @@
 const db = require("../db");
 const { BadRequestError, NotFoundError } = require("../expressError");
 const { sqlForPartialUpdate } = require("../helpers/sql");
+const { queryBuilder } = require("../helpers/queryBuilder")
 
 /** Related functions for companies. */
 
@@ -59,6 +60,17 @@ class Company {
            FROM companies
            ORDER BY name`);
     return companiesRes.rows;
+  }
+
+  /** search companies table with filters 
+   * 
+   */
+  static async filter(filterBy) {
+    const qb = queryBuilder(filterBy)
+    const {queryString, params} = qb
+    console.log(params)
+    const companies = await db.query(queryString, params)
+    return companies.rows[0]
   }
 
   /** Given a company handle, return data about company.
