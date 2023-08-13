@@ -43,6 +43,22 @@ router.post("/", ensureLoggedIn, checkAdmin, async function (req, res, next) {
   }
 });
 
+/** post entry into applications table
+ * using User.apply model method
+ * 
+ */
+router.post("/:username/jobs/:id", ensureLoggedIn, isAdminOrSelf, async function (req, res, next) {
+  console.log('post route')
+  try{
+    const {username, id} = req.params
+    const application = await User.apply(username, id)
+    console.log(application)
+    return res.json({applied: application.jobId})
+  } catch (err) {
+    return next(err)
+  }
+});
+
 
 /** GET / => { users: [ {username, firstName, lastName, email }, ... ] }
  *

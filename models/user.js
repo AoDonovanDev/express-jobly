@@ -134,8 +134,15 @@ class User {
            WHERE username = $1`,
         [username],
     );
+    const jobsRes = await db.query(`
+        SELECT job_id as "jobId"
+        FROM applications
+        WHERE username = $1
+    `, [username])
 
     const user = userRes.rows[0];
+    const simpleList = jobsRes.rows.map(j => j.jobId)
+    user.jobs = simpleList;
 
     if (!user) throw new NotFoundError(`No user: ${username}`);
 
@@ -188,6 +195,16 @@ class User {
 
     delete user.password;
     return user;
+  }
+
+  static async apply(username, jobId){
+    const application = await db.query(`
+      INSERT INTO applications (username, job_id)
+      VALUES ($1, $2) RETURNING username, job_id as "jobId"
+    `, [username, jobId])
+
+    if(!application.rows[0]) throw new NotFoundError('not a valid app', {jobId, username})
+    return application.rows[0]
   }
 
   /** Delete given user from database; returns undefined. */
