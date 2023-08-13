@@ -63,14 +63,14 @@ class Company {
   }
 
   /** search companies table with filters 
-   * 
+   * calls queryBuilder helper function to generate query string and parameter array
+   * returns {results: [{c1}, {c2}...]}
    */
   static async filter(filterBy) {
-    const qb = queryBuilder(filterBy)
-    const {queryString, params} = qb
-    console.log(params)
+    
+    const {queryString, params} = queryBuilder(filterBy)
     const companies = await db.query(queryString, params)
-    return companies.rows[0]
+    return companies.rows
   }
 
   /** Given a company handle, return data about company.
