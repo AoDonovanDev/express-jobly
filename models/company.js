@@ -3,7 +3,7 @@
 const db = require("../db");
 const { BadRequestError, NotFoundError } = require("../expressError");
 const { sqlForPartialUpdate } = require("../helpers/sql");
-const { queryBuilder } = require("../helpers/queryBuilder")
+const { companyQueryBuilder } = require("../helpers/queryBuilder")
 
 /** Related functions for companies. */
 
@@ -68,7 +68,7 @@ class Company {
    */
   static async filter(filterBy) {
     
-    const {queryString, params} = queryBuilder(filterBy)
+    const {queryString, params} = companyQueryBuilder(filterBy)
     const companies = await db.query(queryString, params)
     return companies.rows
   }
@@ -91,8 +91,19 @@ class Company {
            FROM companies
            WHERE handle = $1`,
         [handle]);
+    const jobsRes = await db.query(`
+          SELECT id,
+                 title,
+                 salary,
+                 equity,
+                 company_handle as "companyHandle"
+          FROM jobs
+          WHERE company_handle = $1
+    `, [handle])
 
     const company = companyRes.rows[0];
+    const jobs = jobsRes.rows
+    company.jobs = jobs
 
     if (!company) throw new NotFoundError(`No company: ${handle}`);
 
