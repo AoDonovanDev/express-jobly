@@ -17,12 +17,7 @@ class Job {
    * 
    * */
 
- /*  id SERIAL PRIMARY KEY,
-  title TEXT NOT NULL,
-  salary INTEGER CHECK (salary >= 0),
-  equity NUMERIC CHECK (equity <= 1.0),
-  company_handle VARCHAR(25) NOT NULL
-    REFERENCES jobs ON DELETE CASCADE */
+
 
   static async create({ title, salary, equity, companyHandle}) {
     const result = await db.query(
@@ -38,7 +33,7 @@ class Job {
         ],
     );
     const job = result.rows[0];
-    job.equity = Number(job.equity)
+    
     return job;
   }
 
@@ -80,7 +75,7 @@ class Job {
     const jobRes = await db.query(
           `SELECT title,
                   salary,
-                  equity,
+                  equity::real,
                   company_handle AS "companyHandle"
            FROM jobs
            WHERE id = $1`,
@@ -120,7 +115,7 @@ class Job {
                       RETURNING id,
                                 title, 
                                 salary, 
-                                equity, 
+                                equity::real, 
                                 company_handle AS "companyHandle" 
                                 `;
     const result = await db.query(querySql, [...values, id]);

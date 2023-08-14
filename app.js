@@ -2,6 +2,16 @@
 
 /** Express app for jobly. */
 
+//the numeric type set the in the provided database schema
+// has a weird quirk causing certain numbers to be stored as strings
+//the following code overrides the typing so that numbers will be retrieved
+const types = require('pg').types
+types.setTypeParser(1700, function(val) {
+    return parseFloat(val);
+});
+// https://github.com/brianc/node-postgres/issues/811
+///////////
+
 const express = require("express");
 const cors = require("cors");
 

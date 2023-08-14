@@ -21,7 +21,7 @@ describe("create", function () {
   const newJob = {
     title: "testJob",
     salary: 125000,
-    equity: 0,
+    equity: "0",
     companyHandle: 'fakebiz'
   };
 
@@ -118,12 +118,11 @@ describe("filter", function() {
 describe("get", function () {
   test("works", async function () {
     let job = await Job.get(1);
-    console.log('in get')
     expect(job).toEqual(
       {
        title: 'job1',
        salary: 200000,
-       equity:  "0",
+       equity:  0,
        companyHandle: 'fakebiz'
       });
   });
@@ -144,7 +143,7 @@ describe("update", function () {
   const updateData = 
      {
        salary: 210000,
-       equity:  "0.5"
+       equity:  0.5
       };
 
   test("works", async function () {
@@ -157,13 +156,13 @@ describe("update", function () {
     });
 
     const result = await db.query(
-          `SELECT title, salary, equity, company_handle as "companyHandle"
+          `SELECT title, salary, equity::real, company_handle as "companyHandle"
            FROM jobs
            WHERE id = 1`);
     expect(result.rows).toEqual([{
       title: 'job1',
       salary: 210000,
-      equity: "0.5",
+      equity: 0.5,
       companyHandle: 'fakebiz'
     }]);
   });

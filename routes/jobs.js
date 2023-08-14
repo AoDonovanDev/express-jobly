@@ -52,11 +52,10 @@ router.post("/", ensureLoggedIn, checkAdmin, async function (req, res, next) {
 
 router.get("/", async function (req, res, next) {
   if(Object.keys(req.query).length > 0){
-    const {name, min, max, hasEquity} = req.query;
+    const {title, min, max, hasEquity} = req.query;
     if(min>max) next(new ExpressError("min cannot exceed max", 400))
     try{
-      console.log("route", name, min, max, hasEquity)
-      const filter = await Job.filter({name, min, max, hasEquity})
+      const filter = await Job.filter({title, min, max, hasEquity})
       return res.json({results: filter})
     }
     catch(err) {
@@ -79,9 +78,9 @@ router.get("/", async function (req, res, next) {
  * Authorization required: none
  */
 
-router.get("/:handle", async function (req, res, next) {
+router.get("/:id", async function (req, res, next) {
   try {
-    const job = await Job.get(req.params.handle);
+    const job = await Job.get(req.params.id);
     return res.json({ job });
   } catch (err) {
     return next(err);
@@ -106,8 +105,8 @@ router.patch("/:id", ensureLoggedIn, checkAdmin, async function (req, res, next)
       const errs = validator.errors.map(e => e.stack);
       throw new BadRequestError(errs);
     }
-
-    const job = await Job.update(req.params.handle, req.body);
+    const id = req.params.id
+    const job = await Job.update(id, req.body);
     return res.json({ job});
   } catch (err) {
     return next(err);
@@ -119,10 +118,10 @@ router.patch("/:id", ensureLoggedIn, checkAdmin, async function (req, res, next)
  * Authorization: login, admin
  */
 
-router.delete("/:handle", ensureLoggedIn, checkAdmin, async function (req, res, next) {
+router.delete("/:id", ensureLoggedIn, checkAdmin, async function (req, res, next) {
   try {
-    await Job.remove(req.params.handle);
-    return res.json({ deleted: req.params.handle });
+    await Job.remove(req.params.id);
+    return res.json({ deleted: req.params.id });
   } catch (err) {
     return next(err);
   }

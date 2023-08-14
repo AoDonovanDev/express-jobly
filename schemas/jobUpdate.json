@@ -9,7 +9,7 @@
       "maxLength": 30
     },
     "equity": {
-      "type": "string"
+      "type": "number"
     },
     "companyHandle": {
       "type": "integer",
