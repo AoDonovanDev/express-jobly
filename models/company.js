@@ -102,10 +102,10 @@ class Company {
     `, [handle])
 
     const company = companyRes.rows[0];
+    if (!company) throw new NotFoundError(`No company: ${handle}`, 404);
     const jobs = jobsRes.rows
     company.jobs = jobs
 
-    if (!company) throw new NotFoundError(`No company: ${handle}`);
 
     return company;
   }

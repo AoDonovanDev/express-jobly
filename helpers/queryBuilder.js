@@ -8,7 +8,7 @@
 
 function companyQueryBuilder(filterBy){
   
-  let queryString = 'SELECT handle, name, description, num_Employees as "numEmployees", logo_url as "logoUrl" FROM companies WHERE ';
+  let queryString = 'SELECT handle, name, description, num_employees as "numEmployees", logo_url as "logoUrl" FROM companies WHERE ';
   let params = [];
   let count = 1;
   
@@ -37,7 +37,7 @@ function companyQueryBuilder(filterBy){
     params
   }
 }
-
+//same but for jobs table
 function jobQueryBuilder(filterBy){
   
   let queryString = 'SELECT title, salary, equity, company_handle as "companyHandle" FROM jobs WHERE ';

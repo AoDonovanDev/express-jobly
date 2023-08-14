@@ -42,6 +42,8 @@ function ensureLoggedIn(req, res, next) {
   }
 }
 
+
+//make sure the logged in user is an admin, if not throw error
 function checkAdmin(req, res, next) {
   console.log(res.locals.user.isAdmin)
   try {
@@ -51,7 +53,8 @@ function checkAdmin(req, res, next) {
     return next(err)
   }
 }
-
+//for some routes (user detail pages, deleting and updating users) we want to make sure the logged in user is EITHER an admin OR a user vieweing/editing their own information
+//if not admin OR self throw an error
 function isAdminOrSelf(req, res, next) {
   try{
     const viewUser = req.params.username

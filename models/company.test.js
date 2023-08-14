@@ -23,7 +23,7 @@ describe("create", function () {
     name: "New",
     description: "New Description",
     numEmployees: 1,
-    logoUrl: "http://new.img",
+    logoUrl: "http://new.img"
   };
 
   test("works", async function () {
@@ -40,7 +40,7 @@ describe("create", function () {
         name: "New",
         description: "New Description",
         num_employees: 1,
-        logo_url: "http://new.img",
+        logo_url: "http://new.img"
       },
     ]);
   });
@@ -83,6 +83,13 @@ describe("findAll", function () {
         numEmployees: 3,
         logoUrl: "http://c3.img",
       },
+      {
+        handle: 'fakebiz',
+        name: 'fake-llc',
+        description: 'descripto',
+        numEmployees: 8,
+        logoUrl: 'http://fb.img'
+      }
     ]);
   });
 });
@@ -91,7 +98,15 @@ describe("findAll", function () {
 describe("filter", function() {
   test("min works", async function () {
     let companies = await Company.filter({min:2})
-    expect(companies).toEqual({
+    expect(companies).toEqual([
+      {
+        handle: 'fakebiz',
+        name: 'fake-llc',
+        description: 'descripto',
+        numEmployees: 8,
+        logoUrl: 'http://fb.img'
+      },
+      {
         handle: "c2",
         name: "C2",
         description: "Desc2",
@@ -104,11 +119,11 @@ describe("filter", function() {
         description: "Desc3",
         numEmployees: 3,
         logoUrl: "http://c3.img",
-      })
+      }])
   });
   test("max works", async function () {
     let companies = await Company.filter({max:2});
-    expect(companies).toEqual({
+    expect(companies).toEqual([{
         handle: "c1",
         name: "C1",
         description: "Desc1",
@@ -121,16 +136,24 @@ describe("filter", function() {
         description: "Desc2",
         numEmployees: 2,
         logoUrl: "http://c2.img",
-      })
+      }])
   })
   test("name works, case insensitive", async function() {
     let companies = await Company.filter({name:'c'});
-    expect(companies).toEqual({
+    expect(companies).toEqual([
+      {
         handle: "c1",
         name: "C1",
         description: "Desc1",
         numEmployees: 1,
         logoUrl: "http://c1.img",
+      },
+      {
+        handle: 'fakebiz',
+        name: 'fake-llc',
+        description: 'descripto',
+        numEmployees: 8,
+        logoUrl: 'http://fb.img'
       },
       {
         handle: "c2",
@@ -145,7 +168,7 @@ describe("filter", function() {
         description: "Desc3",
         numEmployees: 3,
         logoUrl: "http://c3.img",
-      })
+      }])
   })
 })
 
@@ -160,6 +183,7 @@ describe("get", function () {
       description: "Desc1",
       numEmployees: 1,
       logoUrl: "http://c1.img",
+      jobs: []
     });
   });
 

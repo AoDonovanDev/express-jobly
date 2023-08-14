@@ -30,7 +30,7 @@
             "default": 0,
             "title": "The equity Schema",
             "examples": [
-                "0"
+                0
             ]
         },
         "companyHandle": {

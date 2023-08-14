@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">43.39% </span>
+                <span class="strong">84.9% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>23/53</span>
+                <span class='fraction'>45/53</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">12.5% </span>
+                <span class="strong">62.5% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/8</span>
+                <span class='fraction'>5/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">28.57% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>2/7</span>
+                <span class='fraction'>7/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">46% </span>
+                <span class="strong">86% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>23/50</span>
+                <span class='fraction'>43/50</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -222,17 +222,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -297,17 +297,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -317,11 +317,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -353,18 +353,18 @@ const router = new express.Router();
  * Authorization required: login
  */
 &nbsp;
-router.post("/", ensureLoggedIn, checkAdmin, <span class="fstat-no" title="function not covered" >as</span>ync function (req, res, next) {
-<span class="cstat-no" title="statement not covered" >  try {</span>
-    const validator = <span class="cstat-no" title="statement not covered" >jsonschema.validate(req.body, companyNewSchema);</span>
-<span class="cstat-no" title="statement not covered" >    if (!validator.valid) {</span>
-      const errs = <span class="cstat-no" title="statement not covered" >validator.errors.map(<span class="fstat-no" title="function not covered" >e </span>=&gt; <span class="cstat-no" title="statement not covered" >e.stack)</span>;</span>
-<span class="cstat-no" title="statement not covered" >      throw new BadRequestError(errs);</span>
+router.post("/", ensureLoggedIn, checkAdmin, async function (req, res, next) {
+  try {
+    const validator = jsonschema.validate(req.body, companyNewSchema);
+    if (!validator.valid) {
+      const errs = validator.errors.map(e =&gt; e.stack);
+      throw new BadRequestError(errs);
     }
 &nbsp;
-    const company = <span class="cstat-no" title="statement not covered" >await Company.create(req.body);</span>
-<span class="cstat-no" title="statement not covered" >    return res.status(201).json({ company });</span>
+    const company = await Company.create(req.body);
+    return res.status(201).json({ company });
   } catch (err) {
-<span class="cstat-no" title="statement not covered" >    return next(err);</span>
+    return next(err);
   }
 });
 &nbsp;
@@ -428,18 +428,18 @@ router.get("/:handle", async function (req, res, next) {
  * Authorization required: login
  */
 &nbsp;
-router.patch("/:handle", ensureLoggedIn, checkAdmin, <span class="fstat-no" title="function not covered" >as</span>ync function (req, res, next) {
-<span class="cstat-no" title="statement not covered" >  try {</span>
-    const validator = <span class="cstat-no" title="statement not covered" >jsonschema.validate(req.body, companyUpdateSchema);</span>
-<span class="cstat-no" title="statement not covered" >    if (!validator.valid) {</span>
-      const errs = <span class="cstat-no" title="statement not covered" >validator.errors.map(<span class="fstat-no" title="function not covered" >e </span>=&gt; <span class="cstat-no" title="statement not covered" >e.stack)</span>;</span>
-<span class="cstat-no" title="statement not covered" >      throw new BadRequestError(errs);</span>
+router.patch("/:handle", ensureLoggedIn, checkAdmin, async function (req, res, next) {
+  try {
+    const validator = jsonschema.validate(req.body, companyUpdateSchema);
+    if (!validator.valid) {
+      const errs = validator.errors.map(e =&gt; e.stack);
+      throw new BadRequestError(errs);
     }
 &nbsp;
-    const company = <span class="cstat-no" title="statement not covered" >await Company.update(req.params.handle, req.body);</span>
-<span class="cstat-no" title="statement not covered" >    return res.json({ company });</span>
+    const company = await Company.update(req.params.handle, req.body);
+    return res.json({ company });
   } catch (err) {
-<span class="cstat-no" title="statement not covered" >    return next(err);</span>
+    return next(err);
   }
 });
 &nbsp;
@@ -448,12 +448,12 @@ router.patch("/:handle", ensureLoggedIn, checkAdmin, <span class="fstat-no" titl
  * Authorization: login
  */
 &nbsp;
-router.delete("/:handle", ensureLoggedIn, checkAdmin, <span class="fstat-no" title="function not covered" >as</span>ync function (req, res, next) {
-<span class="cstat-no" title="statement not covered" >  try {</span>
-<span class="cstat-no" title="statement not covered" >    await Company.remove(req.params.handle);</span>
-<span class="cstat-no" title="statement not covered" >    return res.json({ deleted: req.params.handle });</span>
+router.delete("/:handle", ensureLoggedIn, checkAdmin, async function (req, res, next) {
+  try {
+    await Company.remove(req.params.handle);
+    return res.json({ deleted: req.params.handle });
   } catch (err) {
-<span class="cstat-no" title="statement not covered" >    return next(err);</span>
+    return next(err);
   }
 });
 &nbsp;
@@ -466,7 +466,7 @@ module.exports = router;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-08-13T18:34:13.889Z
+                at 2023-08-13T23:15:52.088Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

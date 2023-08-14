@@ -141,10 +141,11 @@ class User {
     `, [username])
 
     const user = userRes.rows[0];
+    if (!user) throw new NotFoundError(`No user: ${username}`);
     const simpleList = jobsRes.rows.map(j => j.jobId)
     user.jobs = simpleList;
 
-    if (!user) throw new NotFoundError(`No user: ${username}`);
+    
 
     return user;
   }

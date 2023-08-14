@@ -25,7 +25,6 @@ class Job {
     REFERENCES jobs ON DELETE CASCADE */
 
   static async create({ title, salary, equity, companyHandle}) {
-    
     const result = await db.query(
           `INSERT INTO jobs
            (title, salary, equity, company_handle)
@@ -39,7 +38,7 @@ class Job {
         ],
     );
     const job = result.rows[0];
-
+    job.equity = Number(job.equity)
     return job;
   }
 
@@ -64,7 +63,6 @@ class Job {
    * returns {results: [{c1}, {c2}...]}
    */
   static async filter(filterBy) {
-    
     const {queryString, params} = jobQueryBuilder(filterBy)
     const jobs = await db.query(queryString, params)
     return jobs.rows
@@ -147,7 +145,7 @@ class Job {
         [id]);
     const job = result.rows[0];
 
-    if (!job) throw new NotFoundError(`No job: ${handle}`);
+    if (!job) throw new NotFoundError(`No job: ${id}`);
   }
 }
 
