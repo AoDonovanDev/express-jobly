@@ -134,6 +134,7 @@ class User {
            WHERE username = $1`,
         [username],
     );
+    //also return all jobs the user has applied for
     const jobsRes = await db.query(`
         SELECT job_id as "jobId"
         FROM applications
